@@ -1,0 +1,42 @@
+-----------------------
+prefix_result.dat
+
+each line corresponds to 1 strong lens system
+
+1: number of images
+2: lens redshift
+3: velocity dispersion [km/s]
+4: source redshift
+5: original source i-band magnitude
+6: i-band magnitude of lensed image (fainter image for double and 3rd brightest image for quad)
+7: image separation [arcsec]
+8: lens ellipticity
+9: lens position angle [deg]
+10: external shear
+11: external shear position angle [deg]
+12: source x [arcsec]
+13: source y [arcsec]
+14: flag_type, 0 for lensed quasar,  1 for Ia, 2 for Ibc, 3 for IIP, 4 for IIL, 5 for IIn
+15: lens galaxy ID
+
+-----------------------
+prefix_log.dat
+
+each lens system consist of following unit
+lenses are listed in the same order as in mock_qso_result.dat
+
+N=num_image x_src y_src flag_type lens_id
+ x_img[1] y_img[1] mag[1] delay[1]  kappa[1] gamma1[1] gamma2[1]
+ ...
+ x_img[N] y_img[N] mag[N] delay[N]  kappa[N] gamma1[N] gamma2[N]
+
+time delays are in units of days
+
+-----------------------
+prefix.fits
+
+fits table that contains results in prefix_result.dat and prefix_log.dat
+the format (parameter names) is similar to the one used in OM10
+( https://github.com/drphilmarshall/OM10 )
+
+-----------------------
