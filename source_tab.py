@@ -63,6 +63,25 @@ def calc_vol(z, cosmo):
     return (dis * dis / 3283.0) * drdz * (1.0 + z) * (1.0 + z) * (1.0 + z)
 
 #
+# checking total number fo sources
+# 
+def n_src_tot(mlim, fov, flag_type_min, flag_type_max, cosmo):
+    dm = 0.02
+    dz = 0.01
+
+    m = np.arange(14.0 + 0.5 * dm, mlim, dm)
+    z = np.arange(0.1, 5.499, dz)
+    mm, zz = np.meshgrid(m, z)
+    fmm = mm.flatten()
+    fzz = zz.flatten()
+
+    ntot = 0.0
+    for i in range(flag_type_min, flag_type_max + 1):
+        nn = fov * dndzdmobs(fmm, fzz, i, cosmo) * dm * dz
+        ntot = ntot + np.sum(nn)
+
+    return ntot
+#
 # for checks
 #
 if __name__ == '__main__':
@@ -72,5 +91,13 @@ if __name__ == '__main__':
     source_sn.set_spline_kcor_sn(1)
     
     #print(dndzdmobs(np.array([22.0, 23.0]), np.array([1.4, 2.7]), 2, cosmo))
-    make_srctab(27.0, 20000.0, 0, 0, cosmo)
+    #make_srctab(27.0, 20000.0, 0, 0, cosmo)
+
+    # number of sources for full SN
+    # QSOs (cf. QSO (measured) Nnon-lens in Table 2 of OM10)
+    print('%e ' % n_src_tot(23.3, 20000.0, 0, 0, cosmo))
+    # SNe Ia (cf. SN (Ia) Nnon-lens in Table 3 of OM10)
+    print('%e ' % n_src_tot(22.6, 50000.0, 1, 1, cosmo))
+    # SNe cc (cf. SN (cc) Nnon-lens in Table 3 of OM10)
+    print('%e ' % n_src_tot(22.6, 50000.0, 2, 5, cosmo))
     
