@@ -93,7 +93,7 @@ if __name__ == '__main__':
     #print(dndzdmobs(np.array([22.0, 23.0]), np.array([1.4, 2.7]), 2, cosmo))
     #make_srctab(27.0, 20000.0, 0, 0, cosmo)
 
-    # number of sources for full SN
+    # number of unlensed sources for full LSST
     # QSOs (cf. QSO (measured) Nnon-lens in Table 2 of OM10)
     print('%e ' % n_src_tot(23.3, 20000.0, 0, 0, cosmo))
     # SNe Ia (cf. SN (Ia) Nnon-lens in Table 3 of OM10)
